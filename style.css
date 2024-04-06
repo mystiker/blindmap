@@ -1,0 +1,25 @@
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+}
+
+#grid-container {
+  display: grid;
+  grid-template-columns: repeat(100, 1fr);
+  grid-template-rows: repeat(100, 1fr);
+  width: 100vw; /* 100% der Viewport-Breite */
+  height: 100vh; /* 100% der Viewport-Höhe */
+  overflow: auto; /* Fügt Scrollbalken hinzu, falls das Grid den Viewport übersteigt */
+}
+
+.cell {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid #ccc; /* Optional, fügt einen Rahmen um jede Zelle hinzu */
+}
+
+.selected {
+  background-color: blue; /* Markiert die ausgewählte Zelle */
+}
