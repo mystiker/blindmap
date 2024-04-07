@@ -15,23 +15,21 @@ for (let y = -50; y < 50; y++) {
   }
 }
 
-// Erweiterung für unendliches Grid hinzufügen
-// Beispiel: Beim Scrollen am Rand des Fensters weitere Zellen hinzufügen
-window.addEventListener('scroll', () => {
-  // Logik zum Hinzufügen weiterer Zellen
-});
-
 let currentX = 0; // Startposition X
 let currentY = 0; // Startposition Y
 
 function updateSelection() {
+  // Todo: Das ist super langsam. Ich sollte mir das aktuelle Element halten
   document.querySelectorAll('.cell').forEach(cell => cell.classList.remove('selected'));
   const selectedCell = document.querySelector(`.cell[data-x="${currentX}"][data-y="${currentY}"]`);
   selectedCell.classList.add('selected');
+
+  const positionElement = document.getElementById('position');
+  positionElement.textContent = `Position X: ${currentX}, Y: ${currentY}`;
 }
 
 document.addEventListener('DOMContentLoaded', () => {
-  updateSelection(); // Initialisiere die Auswahl beim Laden der Seite
+  updateSelection();
 });
 
 document.addEventListener('keydown', (e) => {
