@@ -17,6 +17,7 @@ for (let y = -50; y < 50; y++) {
 
 let currentX = 0; // Startposition X
 let currentY = 0; // Startposition Y
+let currentZ = 0; // Startposition Z
 
 function updateSelection() {
   // Todo: Das ist super langsam. Ich sollte mir das aktuelle Element halten
@@ -26,6 +27,9 @@ function updateSelection() {
 
   const positionElement = document.getElementById('position');
   positionElement.textContent = `Position X: ${currentX}, Y: ${currentY}`;
+
+  const ebeneElement = document.getElementById('ebene');
+  ebeneElement.textContent = `Ebene: ${currentZ}`;
 }
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -38,6 +42,8 @@ document.addEventListener('keydown', (e) => {
     case 'ArrowDown': currentY++; break;
     case 'ArrowLeft': currentX--; break;
     case 'ArrowRight': currentX++; break;
+    case 'PageUp': currentZ++; break;
+    case 'PageDown': currentZ--; break;
   }
   updateSelection();
 });
