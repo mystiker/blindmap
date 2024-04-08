@@ -9,7 +9,8 @@
     "copy-assets": "node -e \"require('fs').cpSync('./assets', './dist', {recursive: true});\"",
     "start": "npm run build && npx http-server ./dist -o",
     "start:watch": "concurrently \"npm run build:watch\" \"npx http-server ./dist -o\"",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "deploy": "npm run build && gh-pages -d dist"
   },
   "repository": {
     "type": "git",
@@ -23,6 +24,7 @@
   "homepage": "https://github.com/mystiker/blindmap#readme",
   "devDependencies": {
     "concurrently": "^8.2.2",
+    "gh-pages": "^6.1.1",
     "http-server": "^14.1.1"
   }
 }
