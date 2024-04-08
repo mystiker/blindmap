@@ -46,12 +46,7 @@ function updateSymbol() {
   const selectedCell = document.querySelector(`.cell[data-x="${currentX}"][data-y="${currentY}"][data-z="${currentZ}"]`);
   
   // Setze das Symbol der aktuellen Zelle auf das Eingabefeld
-
-  const symbol = selectedCell?.textContent ?? 'Keines';
-
-  const symbolText = symbol.length > 0 ? symbol : 'Keines';
-
-  symbolInput.value = symbolText;
+  symbolInput.value = selectedCell?.textContent;
 }
 
 document.addEventListener('DOMContentLoaded', () => {

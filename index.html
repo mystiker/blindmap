@@ -12,11 +12,14 @@
 
     <section id="grid-container" aria-controls="position" role="grid"></section>
 
-    <aside id="side" role="status">
+    <aside id="side">
       <caption>Raumbeschreibung</caption>
-      <p id="position">Position X: , Y: , Z: </p>
-      <label for="symbol_input">Symbol:</label>
-      <input type="text" id="symbol_input" name="symbol_input" />
+
+      <div role="status">
+        <p id="position">Position X: , Y: , Z: </p>
+        <label for="symbol_input">Symbol:</label>
+        <input type="text" id="symbol_input" aria-label="Symbolfeld" name="symbol_input" />
+      </div>
     </aside>
 
   </main>
