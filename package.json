@@ -1,0 +1,31 @@
+{
+  "name": "@mystiker/blindmap",
+  "version": "0.0.1",
+  "description": "A helper for labyrinths for blind people.",
+  "main": "index.ts",
+  "scripts": {
+    "build": "npm run clean && npm run copy-assets && tsc",
+    "build:watch": "npm run clean && npm run copy-assets && tsc -w",
+    "clean": "node -e \"require('fs'); fs.readdirSync('./dist').forEach(file => fs.rmSync(`./dist/${file}`, { recursive: true }));\"",
+    "copy-assets": "node -e \"require('fs').cpSync('./assets', './dist', {recursive: true});\"",
+    "start": "npm run build && npx http-server ./dist -o",
+    "start:watch": "concurrently \"npm run build:watch\" \"npx http-server ./dist -o\"",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "deploy": "npm run build && gh-pages -d dist"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mystiker/blindmap.git"
+  },
+  "author": "Myst",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/mystiker/blindmap/issues"
+  },
+  "homepage": "https://github.com/mystiker/blindmap#readme",
+  "devDependencies": {
+    "concurrently": "^8.2.2",
+    "gh-pages": "^6.1.1",
+    "http-server": "^14.1.1"
+  }
+}
