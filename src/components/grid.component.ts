@@ -40,14 +40,8 @@ export class GridComponent extends HTMLElement {
     const shadowRoot = this.attachShadow({ mode: "open" });
     shadowRoot.innerHTML = style + template;
 
-    for (let y = -50; y < 50; y++) {
-      for (let x = -50; x < 50; x++) {
-        const cell = this.createCell(x, y, 0);
-        shadowRoot.querySelector("#grid-container")?.appendChild(cell);
-      }
-    }
-
     this.stateSubscription = AppStateService.subscribe((state) => {
+      this.generateGrid(state.position.z);
       this.showCurrentCellSelection(state.position);
       this.updateCellContent(state.loadedLabyrinth.rooms ?? []);
     });
@@ -55,6 +49,27 @@ export class GridComponent extends HTMLElement {
 
   protected disconnectedCallback() {
     this.stateSubscription?.unsubscribe();
+  }
+
+  private generateGrid(z: number) {
+    if (this.shadowRoot === null) {
+      return;
+    }
+
+    const gridContainer = this.shadowRoot.querySelector("#grid-container");
+
+    if (gridContainer === null) {
+      return;
+    }
+
+    gridContainer.innerHTML = "";
+
+    for (let y = -50; y < 50; y++) {
+      for (let x = -50; x < 50; x++) {
+        const cell = this.createCell(x, y, z);
+        gridContainer.appendChild(cell);
+      }
+    }
   }
 
   private updateCellContent(rooms: Room[]) {

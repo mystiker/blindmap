@@ -38,7 +38,6 @@ class StateService<T> {
 
     console.log("New State", this.state);
     
-
     for (const listener of this.listeners) {
       listener(this.state);
     }
