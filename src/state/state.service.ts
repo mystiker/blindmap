@@ -1,3 +1,4 @@
+import { AppStorageService } from "../storage/storage.service.js";
 import { AppState, initialState } from "./app.state.js";
 
 type ListenerFn<T> = (state: T) => void;
@@ -7,6 +8,7 @@ export type Subscription = { unsubscribe: () => void };
 class StateService<T> {
   private state: T;
   private listeners: ListenerFn<T>[];
+
 
   constructor(initialState: T) {
     this.state = initialState;
@@ -35,6 +37,7 @@ class StateService<T> {
     this.state = newState;
 
     console.log("New State", this.state);
+    
 
     for (const listener of this.listeners) {
       listener(this.state);
@@ -42,4 +45,10 @@ class StateService<T> {
   }
 }
 
-export const AppStateService = new StateService<AppState>(initialState);
+const loadedState = AppStorageService.getState();
+
+export const AppStateService = new StateService<AppState>(loadedState ?? initialState);
+
+AppStateService.subscribe((state) => {
+  AppStorageService.saveState(state);
+});
