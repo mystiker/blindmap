@@ -1,3 +1,4 @@
+import { AppStorageService } from "../storage/storage.service.js";
 import { initialState } from "./app.state.js";
 class StateService {
     state;
@@ -28,4 +29,8 @@ class StateService {
         }
     }
 }
-export const AppStateService = new StateService(initialState);
+const loadedState = AppStorageService.getState();
+export const AppStateService = new StateService(loadedState ?? initialState);
+AppStateService.subscribe((state) => {
+    AppStorageService.saveState(state);
+});
